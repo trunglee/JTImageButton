@@ -10,7 +10,6 @@
 
 @interface JTImageButton()
 
-@property (nonatomic, strong) NSString *titleText;
 @property (nonatomic, strong) UIImage *iconImage;
 @property (nonatomic, strong) UIFont *titleFont;
 @property (nonatomic, assign) CGFloat iconHeight;
@@ -71,9 +70,13 @@
 
 - (void)createTitle:(NSString *)titleText withIcon:(UIImage *)iconImage font:(UIFont *)titleFont iconHeight:(CGFloat)iconHeight iconOffsetY:(CGFloat)iconOffsetY {
     
-    self.titleText = titleText;
-    self.iconImage = iconImage;
-    self.titleFont = titleFont;
+    _titleText = titleText ? titleText : @"";
+    _iconImage = iconImage;
+    
+    _titleFont = titleFont;
+    if (!_titleFont) {
+        _titleFont = [UIFont systemFontOfSize:kDefaultFontSize];
+    }
     self.iconHeight = iconHeight;
     self.iconOffsetY = iconOffsetY;
     
@@ -255,6 +258,7 @@
     if (!_titleText) {
         _titleText = @"";
     }
+    [self initialize];
 }
 
 - (void)setIconImage:(UIImage *)iconImage {

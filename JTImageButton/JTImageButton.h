@@ -26,6 +26,11 @@ typedef enum {
 } JTImageButtonIconSide;
 
 /**
+ The title text of the button
+ */
+@property (nonatomic, strong) NSString *titleText;
+
+/**
  The title color of the button represented as a UIColor. The default title color is orange.
  */
 @property (nonatomic, strong) UIColor *titleColor;
